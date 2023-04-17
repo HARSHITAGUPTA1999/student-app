@@ -1,0 +1,258 @@
+<div class="container">
+  <mat-tab-group
+    mat-align-tabs="center"
+    (selectedIndexChange)="setDataSource($event)"
+  >
+    <mat-tab label="All students">
+      <!-- inserting table component -->
+      <!-- <app-student-table
+        [tableColumns]="periodicTableCols"
+        [tableData]="periodicTableData"
+      ></app-student-table> -->
+
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="main-table mat-elevation-z8"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell class="id" *matCellDef="let student">
+            {{ student.id }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell class="firstName" *matCellDef="let student">
+            {{ student.firstName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef>Gender</th>
+          <td mat-cell class="gender" *matCellDef="let student">
+            {{ student.gender }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell class="email" *matCellDef="let student">
+            {{ student.email }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell class="lastName" *matCellDef="let student">
+            {{ student.lastName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell class="actions" *matCellDef="let student">
+            <app-button
+              [btnLabel]="'Delete'"
+              [btnColor]="'white'"
+              [btnBackgroundColor]="'red'"
+              (click)="deleteStudent(student.id)"
+              [btnMargin]="'2px'"
+            ></app-button>
+
+            <app-button
+              [btnLabel]="'Update'"
+              [btnColor]="'black'"
+              [btnBackgroundColor]="' rgb(239, 211, 88)'"
+              (click)="updateStudent(student.id)"
+              [btnMargin]="'5px'"
+            ></app-button>
+
+            <app-button
+              [btnLabel]="'View Details'"
+              [btnColor]="'black'"
+              [btnBackgroundColor]="' rgb(71, 194, 182)'"
+              (click)="viewStudent(student.id)"
+              [btnMargin]="'2px'"
+            ></app-button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+      </table>
+    </mat-tab>
+
+    <mat-tab label="Active">
+      <!-- <div class="active-div" *ngFor="let s of activeStudents">
+        <li>ID: {{ s.id }}</li>
+        <li>GENDER: {{ s.gender }}</li>
+        <li>FIRST NAME: {{ s.firstName }}</li>
+        <li>LAST NAME: {{ s.lastName }}</li>
+        <li>EMAIL: {{ s.email }}</li>
+        <br />
+      </div> -->
+
+      <h2 class="heading">STUDENTS WITH GENDER INFORMATION</h2>
+
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="main-table mat-elevation-z8"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell class="id" *matCellDef="let student">
+            {{ student.id }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell class="firstName" *matCellDef="let student">
+            {{ student.firstName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef>Gender</th>
+          <td mat-cell class="gender" *matCellDef="let student">
+            {{ student.gender }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell class="email" *matCellDef="let student">
+            {{ student.email }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell class="lastName" *matCellDef="let student">
+            {{ student.lastName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell class="actions" *matCellDef="let student">
+            <app-button
+              [btnLabel]="'Delete'"
+              [btnColor]="'white'"
+              [btnBackgroundColor]="'red'"
+              (click)="deleteStudent(student.id)"
+              [btnMargin]="'2px'"
+            ></app-button>
+
+            <app-button
+              [btnLabel]="'Update'"
+              [btnColor]="'black'"
+              [btnBackgroundColor]="' rgb(239, 211, 88)'"
+              (click)="updateStudent(student.id)"
+              [btnMargin]="'5px'"
+            ></app-button>
+
+            <app-button
+              [btnLabel]="'View Details'"
+              [btnColor]="'black'"
+              [btnBackgroundColor]="' rgb(71, 194, 182)'"
+              (click)="viewStudent(student.id)"
+              [btnMargin]="'2px'"
+            ></app-button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+      </table>
+    </mat-tab>
+    <mat-tab label="Inactive">
+      <!-- <div class="active-div" *ngFor="let s of inactiveStudents">
+        <li>ID: {{ s.id }}</li>
+        <li>GENDER: {{ s.gender }}</li>
+        <li>FIRST NAME: {{ s.firstName }}</li>
+        <li>LAST NAME: {{ s.lastName }}</li>
+        <li>EMAIL: {{ s.email }}</li>
+        <br />
+      </div> -->
+
+      <h2 class="heading">STUDENTS WITH NO GENDER INFORMATION</h2>
+
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="main-table mat-elevation-z8"
+      >
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id</th>
+          <td mat-cell class="id" *matCellDef="let student">
+            {{ student.id }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>First Name</th>
+          <td mat-cell class="firstName" *matCellDef="let student">
+            {{ student.firstName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell *matHeaderCellDef>Gender</th>
+          <td mat-cell class="gender" *matCellDef="let student">
+            {{ student.gender }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="emailId">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell class="email" *matCellDef="let student">
+            {{ student.email }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Last Name</th>
+          <td mat-cell class="lastName" *matCellDef="let student">
+            {{ student.lastName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell class="actions" *matCellDef="let student">
+            <app-button
+              [btnLabel]="'Delete'"
+              [btnColor]="'white'"
+              [btnBackgroundColor]="'red'"
+              (click)="deleteStudent(student.id)"
+              [btnMargin]="'2px'"
+            ></app-button>
+
+            <app-button
+              [btnLabel]="'Update'"
+              [btnColor]="'black'"
+              [btnBackgroundColor]="' rgb(239, 211, 88)'"
+              (click)="updateStudent(student.id)"
+              [btnMargin]="'5px'"
+            ></app-button>
+
+            <app-button
+              [btnLabel]="'View Details'"
+              [btnColor]="'black'"
+              [btnBackgroundColor]="' rgb(71, 194, 182)'"
+              (click)="viewStudent(student.id)"
+              [btnMargin]="'2px'"
+            ></app-button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,82 @@
+<div>
+  <h1 class="heading">UPDATE A STUDENT</h1>
+  <br />
+
+  <form (ngSubmit)="onSubmit()" class="container" #f="ngForm">
+    <mat-form-field appearance="outline" class="feilds">
+      <mat-label>First Name:</mat-label>
+      <input
+        [formControl]="firstNameFormControl"
+        type="text"
+        matInput
+        placeholder="Enter your first name"
+        [(ngModel)]="student.firstName"
+        name="firstName"
+      />
+      <mat-error *ngIf="firstNameFormControl.hasError('required')">
+        First name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <br />
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name:</mat-label>
+      <input
+        [formControl]="lastNameFormControl"
+        type="text"
+        matInput
+        placeholder="Enter your last name"
+        [(ngModel)]="student.lastName"
+        name="lastName"
+      />
+      <mat-error *ngIf="lastNameFormControl.hasError('required')">
+        Last name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input
+        [formControl]="emailFormControl"
+        type="email"
+        matInput
+        placeholder="Ex: abc@gmail.com"
+        [(ngModel)]="student.email"
+        name="email"
+      />
+
+      <mat-error
+        *ngIf="
+          emailFormControl.hasError('email') &&
+          !emailFormControl.hasError('required')
+        "
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Select Gender</mat-label>
+      <mat-select [(value)]="student.gender" [formControl]="genderFormControl">
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+      <mat-error *ngIf="genderFormControl.hasError('required')">
+        Gender is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <button
+      mat-raised-button
+      [disabled]="!f.form.valid"
+      type="submit"
+      color="primary"
+    >
+      Update
+    </button>
+  </form>
+</div>

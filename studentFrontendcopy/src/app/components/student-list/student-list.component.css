@@ -1,0 +1,89 @@
+.container {
+  margin-top: 40px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.active-div {
+  margin: 20px auto;
+  width: 50%;
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.main-table {
+  width: 80%;
+  margin: auto;
+  font-size: 25px;
+}
+.mat-header-row {
+  background-color: rgb(192, 218, 237);
+}
+
+.mat-header-cell {
+  color: #1d1724;
+  border: 2px solid white;
+  text-align: center;
+}
+
+.firstName {
+  background-color: #cdd6ff;
+  border: 2px solid white;
+  text-align: center;
+}
+
+.id {
+  background-color: #cdd6ff;
+  border: 2px solid white;
+  text-align: center;
+}
+
+.gender {
+  background-color: #cdd6ff;
+  border: 2px solid white;
+  text-align: center;
+}
+
+.email {
+  background-color: #d9dff5;
+  border: 2px solid white;
+  text-align: center;
+}
+
+.lastName {
+  background-color: #d9dff5;
+  border: 2px solid white;
+  text-align: center;
+}
+
+.mat-column-id {
+  font-size: 16px;
+}
+
+.mat-column-firstName {
+  font-size: 16px;
+}
+
+.mat-column-gender {
+  font-size: 16px;
+}
+
+.mat-column-lastName {
+  font-size: 16px;
+}
+
+.mat-column-emailId {
+  font-size: 16px;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: #c9aaf7;
+}
+
+.actions {
+  text-align: center;
+  border: 2px solid white;
+  background-color: #d9dff5;
+}
